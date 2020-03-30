@@ -1,3 +1,5 @@
+https://youtu.be/qRJly5m2zJg
+
 Key Constraints:
 - stateless (you don't need to worry about state on server side)- Because REST is built that way
 - Resourceful
@@ -38,4 +40,14 @@ python3 manage.py createsuperuser --email admin@admin.com --username admin
 python3 manage.py makemigrations
 python3 manage.py migrate
 
+django-admin startapp qv1
+
+Generate ERD:
+brew install graphviz
+pip3 install django-extensions
+pip3 install pyparsing pydot
+python3 manage.py graph_models -a > erd.dot
+python3 manage.py graph_models -a > erd.dot && python3 manage.py graph_models --pydot -a -g -o erd.png 
+
 ```
+

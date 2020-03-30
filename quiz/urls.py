@@ -14,10 +14,29 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from quiz.views import index
+from django.urls import path, include
+from quiz.views import index, Message
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name = 'index'), # index is a view (a function in Django)
+    path('', index, name='index'),  # index is a view (a function in Django)
+    # Since it's a class based view
+    path('message/', Message.as_view(), name='message'),
+    path('qv1/', include('qv1.urls'))
 ]
+
+# # For Slash or no-slash after the endpoint?
+# from django.conf.urls import include, url
+# from rest_framework.routers import DefaultRouter
+
+# from api.v1.views import BookViewSet
+
+# router = DefaultRouter()
+# slashless_router = DefaultRouter(trailing_slash=False)
+# slashless_router.registry = router.registry[:]
+# router.register(r'^books', BookViewSet, base_name='books')
+
+# urlpatterns = [
+#     url(r'^', include(router.urls)),
+#     url(r'^', include(slashless_router.urls)),
+# ]
